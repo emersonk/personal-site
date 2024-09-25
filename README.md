@@ -14,3 +14,10 @@ npm run astro
 
 # Get help using the Astro CLI
 npm run astro --help
+
+
+# Alpine JS
+Docs are located in the C:\Development\alpine\packages\docs\src\en directory.
+
+# Astro docs are available at:
+https://devdocs.io/
