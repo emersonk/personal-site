@@ -15,6 +15,9 @@ npm run astro
 # Get help using the Astro CLI
 npm run astro --help
 
+# Running ollama in powershell
+ollama run llama3.2
+And multiline input is """ dsgdsfgsdg """
 
 # Alpine JS
 Docs are located in the C:\Development\alpine\packages\docs\src\en directory.
