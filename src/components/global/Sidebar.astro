@@ -1,69 +1,49 @@
 ---
 const navItems = [
-  { text: "Overview", href: "/system/overview" },
-  { text: "Style Guide", href: "/system/style-guide" },
-  {
-    text: "Buy Kotei",
-    href: "https://lexingtonthemes.lemonsqueezy.com/checkout/buy/2813ea13-f8f9-41e3-8f02-e5ac0cffefaa",
-  },
-];
-const socialLinks = [
-  { text: "X", href: "#_" },
-  { text: "Posts CV", href: "#_" },
-  { text: "GitHub", href: "#_" },
+  { text: "Projects", href: "/system/overview" },
+  { text: "Resume", href: "/system/style-guide" },
 ];
 ---
 
 <div
-  class="relative flex-none overflow-hidden px-8 lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex lg:px-0">
+  class="relative flex-none overflow-hidden px-8 lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex lg:px-0"
+>
   <div
-    class="flex w-full bg-neutral-50 lg:pointer-events-auto lg:mr-[calc(max(2rem,50%-38rem)+39.7rem)] lg:min-w-[32rem] lg:overflow-y-auto lg:overflow-x-hidden lg:pl-[max(4rem,calc(50%-38rem))]">
+    class="flex w-full bg-neutral-50 lg:pointer-events-auto lg:mr-[calc(max(2rem,50%-38rem)+39.7rem)] lg:min-w-[32rem] lg:overflow-y-auto lg:overflow-x-hidden lg:pl-[max(4rem,calc(50%-38rem))]"
+  >
     <div
-      class="mx-auto max-w-lg lg:mx-0 lg:flex lg:w-96 lg:max-w-none lg:flex-col">
+      class="mx-auto max-w-lg lg:mx-0 lg:flex lg:w-96 lg:max-w-none lg:flex-col"
+    >
       <div class="pb-16 pt-20 sm:pb-20 sm:pt-32 lg:py-20">
-        <a
-          href="/"
-          class="text-kotei-800">
-          Dezain Sutajio</a
-        >
-        <h1
-          class="mt-8 font-display text-5xl md:text-8xl font-medium text-kotei-800">
-          Emerson Kirby
-        </h1>
+        <p class="text-kotei-800">Hello, I'm</p>
+        <a href="/">
+          <h1
+            class="mt-8 font-display text-5xl md:text-8xl font-medium text-kotei-800 hover:text-kotei-1050"
+          >
+            Emerson Kirby.
+          </h1>
+        </a>
         <p class="mt-4 text-sm text-neutral-500">
-          We're a studio based in Fukuoka that specializes in creating beautiful
-          and simple brands for businesses that customers remember.
+          I am a software developer based in Canada. I have many interests, but
+          in the context of computing, I have been focused on app development
+          (both web and mobile), health and wellness tech, and DSP.
         </p>
-        <ul
-          class="mt-8"
-          role="list">
-          {
-            navItems.map((item) => (
-              <li>
-                <a
-                  class="text-neutral-500 text-sm hover:text-kotei-800"
-                  href={item.href}
-                  title={item.text}
-                  aria-label={item.text}>
-                  {item.text}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="flex flex-1 items-end lg:justify-start pb-8 gap-3">
+        <p class="mt-2 text-sm text-neutral-500">
+          I like to create things that people like to use.
+        </p>
+
+        <p class="mt-2 mb-8 text-sm text-neutral-500">
+          You can reach me at, github, linked in, email
+        </p>
+
         {
-          socialLinks.map((item) => (
-            <p class="flex items-baseline">
-              <a
-                class="rounded-lg text-xs font-medium text-kotei-800 hover:text-kotei-1000"
-                href={item.href}
-                title={item.text}
-                aria-label={item.text}>
-                {item.text}
-              </a>
-            </p>
+          navItems.map((item) => (
+            <a
+              class="flex items-center font-semibold text-kotei-600 transition-all hover:text-kotei-1050"
+              href={item.href}
+            >
+              {item.text} &nbsp; &rarr;
+            </a>
           ))
         }
       </div>
