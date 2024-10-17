@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("work");
+const allProjects = await getCollection("projects");
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
 ---
@@ -20,11 +20,11 @@ import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-1 mt-12 gap-10">
             {
-              allPosts
+              allProjects
                 .slice()
                 .map((post) => (
                   <ProjectPreviews
-                    url={"/work/" + post.slug}
+                    url={"/project/" + post.slug}
                     name={post.data.client}
                     alt={post.data.title}
                     thumbnail={post.data.thumbnail.url}

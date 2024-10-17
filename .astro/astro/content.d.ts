@@ -238,50 +238,58 @@ declare module 'astro:content' {
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 };
-"work": {
+"projects": {
 "1.mdx": {
 	id: "1.mdx";
   slug: "1";
   body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
+  collection: "projects";
+  data: any
 } & { render(): Render[".mdx"] };
 "2.mdx": {
 	id: "2.mdx";
   slug: "2";
   body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
+  collection: "projects";
+  data: any
 } & { render(): Render[".mdx"] };
 "3.mdx": {
 	id: "3.mdx";
   slug: "3";
   body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
+  collection: "projects";
+  data: any
 } & { render(): Render[".mdx"] };
 "4.mdx": {
 	id: "4.mdx";
   slug: "4";
   body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
+  collection: "projects";
+  data: any
 } & { render(): Render[".mdx"] };
 "5.mdx": {
 	id: "5.mdx";
   slug: "5";
   body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
+  collection: "projects";
+  data: any
 } & { render(): Render[".mdx"] };
 "6.mdx": {
 	id: "6.mdx";
   slug: "6";
   body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
+  collection: "projects";
+  data: any
 } & { render(): Render[".mdx"] };
 };
+"work": Record<string, {
+  id: string;
+  slug: string;
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">;
+  render(): Render[".md"];
+}>;
 
 	};
 

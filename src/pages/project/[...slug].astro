@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import WorkLayout from "../../layouts/WorkLayout.astro";
+import ProjectPageLayout from "../../layouts/ProjectPageLayout.astro";
 export async function getStaticPaths() {
-  const work = await getCollection("work");
-  const paths = work.map((page) => {
+  const projects = await getCollection("projects");
+  const paths = projects.map((page) => {
     return {
       params: { slug: page.slug },
       props: { page },
@@ -17,6 +17,6 @@ const { page } = Astro.props;
 const { Content } = await page.render();
 ---
 
-<WorkLayout frontmatter={page.data}>
+<ProjectPageLayout frontmatter={page.data}>
   <Content />
-</WorkLayout>
+</ProjectPageLayout>
