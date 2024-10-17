@@ -22,12 +22,12 @@ import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
             {
               allProjects
                 .slice()
-                .map((post) => (
+                .map((project) => (
                   <ProjectPreviews
-                    url={"/project/" + post.slug}
-                    name={post.data.client}
-                    alt={post.data.title}
-                    thumbnail={post.data.thumbnail.url}
+                    url={"/project/" + project.slug}
+                    name={project.data.client}
+                    alt={project.data.title}
+                    thumbnail={project.data.thumbnail.url}
                   />
                 ))
             }
