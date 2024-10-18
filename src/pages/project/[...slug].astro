@@ -7,7 +7,6 @@ export async function getStaticPaths() {
     return {
       params: { slug: project.slug },
       props: { project },
-
       trailingSlash: false,
     };
   });
