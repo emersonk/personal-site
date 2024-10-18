@@ -239,37 +239,16 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "projects": {
-"2.mdx": {
-	id: "2.mdx";
-  slug: "2";
+"lightheart.mdx": {
+	id: "lightheart.mdx";
+  slug: "lightheart";
   body: string;
   collection: "projects";
   data: any
 } & { render(): Render[".mdx"] };
-"3.mdx": {
-	id: "3.mdx";
-  slug: "3";
-  body: string;
-  collection: "projects";
-  data: any
-} & { render(): Render[".mdx"] };
-"4.mdx": {
-	id: "4.mdx";
-  slug: "4";
-  body: string;
-  collection: "projects";
-  data: any
-} & { render(): Render[".mdx"] };
-"5.mdx": {
-	id: "5.mdx";
-  slug: "5";
-  body: string;
-  collection: "projects";
-  data: any
-} & { render(): Render[".mdx"] };
-"6.mdx": {
-	id: "6.mdx";
-  slug: "6";
+"miireader.mdx": {
+	id: "miireader.mdx";
+  slug: "miireader";
   body: string;
   collection: "projects";
   data: any
@@ -277,6 +256,13 @@ declare module 'astro:content' {
 "pigeon.mdx": {
 	id: "pigeon.mdx";
   slug: "pigeon";
+  body: string;
+  collection: "projects";
+  data: any
+} & { render(): Render[".mdx"] };
+"wikigame.mdx": {
+	id: "wikigame.mdx";
+  slug: "wikigame";
   body: string;
   collection: "projects";
   data: any
