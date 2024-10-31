@@ -19,7 +19,7 @@ const { frontmatter } = Astro.props;
             Website
           </p>
           <p class="italic font-display font-medium text-kotei-800">
-            <a href="#_">https://Lexingtonthemes.com</a>
+            <a href={frontmatter.website}>{frontmatter.website}</a>
           </p>
           <img
             class="mt-8"

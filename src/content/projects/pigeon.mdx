@@ -1,41 +1,49 @@
 ---
-client: Pigeon
-description: A comprehensive branding project for a leading tech company, emphasizing innovation and sustainability.
-website: https://www.acmecorp.com
+client: Pigeon Messenger
+description: A note taking app built into iMessage.
+website: https://www.pigeon.ooo
 thumbnail:
-  url: "/work1.png"
-  alt: "Acme Corporation Branding"
+  url: "/pigeon-logo-v2.png"
+  alt: "Pigeon logo"
 ---
 
-### Client Overview:
+### Context:
 
-Lexington Themes is a leading provider of free and premium multipage themes and UI Kits. Their diverse range of themes caters to freelancers, developers, businesses, and personal users alike. All their products are meticulously crafted using Astro.js and Tailwind CSS, offering simplicity and ease of customization as their hallmark.
+The concept for pigeon arose because I often found myself scrolling through lengthy chat threads to find key information like dates, meal ideas, or gift requests. The idea was to create a tool that would allow me to pin these messages somewhere in iMessage. However, due to the unfortunate but unsurprisingly restricted nature of Apple's iMessage APIs, it became clear that direct access to message content from within the iMessage sandbox was not possible. Because of this I settled for a note taking space in which messages could be quickly copied and pasted.
 
-### Challenge:
+<div class="grid grid-cols-2 gap-2">
+  <img
+    src="/pigeon-4.png"
+    alt=""
+  />
+  <img
+    src="/pigeon-2.png"
+    alt=""
+  />
+</div>
 
-Lexington Themes faced the challenge of delivering website templates that were not only visually appealing but also easy to adapt for a variety of users, from individual bloggers to businesses. They needed to strike the right balance between design aesthetics and user-friendly customization options.
+### Technical Architecture:
 
-### Solution:
+From a development standpoint, Pigeon is structured as an iMessage extension utilizing the MSMessagesAppViewController subclass. However, instead of building a standard SwiftUI interface, I opted to use a WKWebView, which allowed the front-end interface to be built using React. This hybrid approach gave me greater flexibility in design and functionality.
 
-Lexington Themes tackled this challenge by adopting Astro.js and Tailwind CSS as their core technologies. This strategic choice allowed them to create web themes and UI Kits that are not only beautifully designed but also incredibly versatile. With the power of Astro.js, they were able to streamline the hydration of runtime logic, ensuring efficient and responsive websites.
+One of the more technically interesting aspects of the project was implementing web-to-native communication. By linking the React front-end with Swift code on the back-end, I was able to achieve smooth interactions, such as dynamically adjusting the screen size or enabling iMessage sharing directly from the (React) interface.
+
+### Rich Text Editor Integration:
+
+For the note-taking space, I wanted to ensure users had a rich text editor that was both powerful and easy to use. After considering various options, I chose to implement TipTap, a headless editor framework built on ProseMirror. TipTap proved to be an excellent choice, offering a flexible, customizable editing experience while abstracting away many of the complexities that typically accompany rich text editor development.
 
 
 <div class="grid grid-cols-2 gap-2">
   <img
-    src="/work2.png"
+    src="/pigeon-3.png"
     alt=""
   />
   <img
-    src="/work4.png"
+    src="/pigeon-1.png"
     alt=""
   />
 </div>
-### Results:
 
-1.  Simplicity and Customization: Lexington Themes' products became known for their user-friendly customization options. Users, whether freelancers or businesses, appreciated the ability to tailor the themes to their specific needs effortlessly.
-2.  Wide User Base: Their themes and UI Kits found a broad user base, ranging from individual bloggers and small businesses to large enterprises. This diversity showcased the adaptability of their products.
-3.  Positive Reception: Lexington Themes received positive feedback from clients and users alike, praising the beauty of their designs and the ease of implementation.
+### Future Plans:
 
-### Conclusion:
-
-Lexington Themes successfully demonstrated that simplicity and versatility can go hand-in-hand in web design. Their use of Astro.js and Tailwind CSS allowed them to create stunning and adaptable themes and UI Kits that cater to a wide array of users. With a commitment to quality and user satisfaction, Lexington Themes continues to make a mark in the world of web design.
+Currently, Pigeon relies on Firebase for its database management, handling user data and synchronization efficiently. However, I’m considering migrating to Supabase in the future. This would be more of an exploratory change, aimed at seeing how Supabase compares in terms of performance and developer experience.
