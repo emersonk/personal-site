@@ -1,41 +1,63 @@
 ---
 client: Light Heart
-description: Redesign of an Italian restaurant's website to enhance online booking and menu presentation.
-website: https://www.bellacucina.com
+description: Bringing the power of an ECG to smart phones.
+technicalDescription: Smart phone photoplethysmography for stress detection
+website: https://lightheart.io/
+status: Archived
 thumbnail:
-  url: "/work2.png"
-  alt: "Bella Cucina Website Redesign"
+  url: "/lightheart-logo.png"
+  alt: "Light heart logo"
 ---
 
-### Client Overview:
+### Context:
 
-Lexington Themes is a leading provider of free and premium multipage themes and UI Kits. Their diverse range of themes caters to freelancers, developers, businesses, and personal users alike. All their products are meticulously crafted using Astro.js and Tailwind CSS, offering simplicity and ease of customization as their hallmark.
+light heart was a project born out of my time at Core Health. It's obvious that many people struggle with stress and anxiety, but there is not an objective way to measure it. According to a 2023 Deloitte survey, 77% of respondents have experienced burnout at their current job [1] and ADAA claims that ~19% of the US population is affected by anxiety [2]. light heart had one stated goal - objectively measure mental stress in real time.
 
-### Challenge:
-
-Lexington Themes faced the challenge of delivering website templates that were not only visually appealing but also easy to adapt for a variety of users, from individual bloggers to businesses. They needed to strike the right balance between design aesthetics and user-friendly customization options.
-
-### Solution:
-
-Lexington Themes tackled this challenge by adopting Astro.js and Tailwind CSS as their core technologies. This strategic choice allowed them to create web themes and UI Kits that are not only beautifully designed but also incredibly versatile. With the power of Astro.js, they were able to streamline the hydration of runtime logic, ensuring efficient and responsive websites.
-
+We achieved something close to that goal shortly after CoreHealth was acquired. For more details, see this validation study published by researchers at Brock University “Examining the Light Heart Mobile Device App for Assessing Human Pulse Interval and Heart Rate Variability: Validation Study”. DOI: 10.2196/56921.[3]
 
 <div class="grid grid-cols-2 gap-2">
   <img
-    src="/work2.png"
+    src="/lh-1.png"
     alt=""
   />
   <img
-    src="/work4.png"
+    src="/lh-2.png"
     alt=""
   />
 </div>
-### Results:
 
-1.  Simplicity and Customization: Lexington Themes' products became known for their user-friendly customization options. Users, whether freelancers or businesses, appreciated the ability to tailor the themes to their specific needs effortlessly.
-2.  Wide User Base: Their themes and UI Kits found a broad user base, ranging from individual bloggers and small businesses to large enterprises. This diversity showcased the adaptability of their products.
-3.  Positive Reception: Lexington Themes received positive feedback from clients and users alike, praising the beauty of their designs and the ease of implementation.
+### The physiology behind light heart:
 
-### Conclusion:
+light heart used a reading of heart rate variability (HRV) to approximate users level of stress. HRV is a measure of variation in time between consecutive heartbeats. It is a measure of the autonomic nervous system's regulation of the heart rate and reflects the dynamic interplay between the sympathetic (fight or flight) and parasympathetic (rest and digest) nervous systems.
 
-Lexington Themes successfully demonstrated that simplicity and versatility can go hand-in-hand in web design. Their use of Astro.js and Tailwind CSS allowed them to create stunning and adaptable themes and UI Kits that cater to a wide array of users. With a commitment to quality and user satisfaction, Lexington Themes continues to make a mark in the world of web design.
+This itself was a good start towards the goal of measuring stress in real time but complicating thing is the fact that while HRV serves as a general indicator of stress, it can be influenced significantly by physical exertion. To concentrate on mental stress specifically, light heart implemented a proprietary adaptation of Baevsky's stress index—a well-established method for quantifying stress through HRV data. Originally devised by Baevsky and colleagues in the 1960s as part of research for the USSR's space program, this method was intended to evaluate autonomic regulation and monitor the health of Russian cosmonauts under the unique stresses of spaceflight[4].
+
+### Photoplethysmography (PPG):
+
+Light Heart actually calculates HRV and derives the stress index through Photoplethysmography (PPG), a technique that measures changes in blood volume by tracking light intensity fluctuations. By placing a fingertip over the smartphone camera, light heart is able to see and quantify these minuscule fluctuations.
+
+<img
+  class="w-full"
+    src="/lh-vs-ecg.png"
+    alt=""
+  />
+
+### Architecture & techniques
+
+As some of the algorithms are proprietary, I will describe what I can. Recording at 30 frames per second for one minute and using the phone's torch as a light source, Light Heart performs on-device image processing, calculating average RGB values for each frame and converting them to HSL (Hue, Saturation, Luminosity) so that it can use luminosity as a proxy for intensity. This array of luminosity values is then sent to an Azure server for further smoothing, filtering and noise removal. Once the signal has been processed, it is interpolated for any missing data due to movement artifacts and the HRV metrics are calculated.
+
+During the reading, Light Heart continuously monitors signal quality, confirming a signal through RGB values and assessing the luminosity stability by performing a Fast Fourier Transform (FFT), the intuition being that a signal without much noise should have a dominant frequency.
+
+
+
+[1] https://www2.deloitte.com/us/en/pages/about-deloitte/articles/burnout-survey.html
+
+[2] https://adaa.org/understanding-anxiety/facts-statistics
+
+[3] Klassen S, Jabbar J, Osborne J, Iannarelli N, Kirby E, O'Leary D, Locke S
+Examining the Light Heart Mobile Device App for Assessing Human Pulse Interval and Heart Rate Variability: Validation Study
+JMIR Form Res 2024;8:e56921
+URL: https://formative.jmir.org/2024/1/e56921
+DOI: 10.2196/56921
+
+[4]  Roman M. Baevsky, Anna G. Chernikova. Heart rate variability analysis: physiological foundations and main methods; Cardiometry; No.10 May 2017; p.66-76; DOI: 10.12710/cardiometry.2017.6676 Available from: [www.cardiometry.net/issues/no10may-2017/heart-rate-variability-analysis](http://www.cardiometry.net/issues/no10may-2017/heart-rate-variability-analysis)

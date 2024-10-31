@@ -3,7 +3,9 @@ const work = defineCollection({
   schema: z.object({
     client: z.string().optional(),
     description: z.string().optional(),
+    technicalDescription: z.string().optional(),
     website: z.string().optional(),
+    status: z.string().optional(),
     thumbnail: z.object({
       url: z.string(),
       alt: z.string(),

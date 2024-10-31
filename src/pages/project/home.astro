@@ -18,13 +18,14 @@ import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
               A few projects I've made over the years.</span
             >
           </p>
-          <div class="grid grid-cols-1 lg:grid-cols-1 mt-12 gap-10">
+          <div class="grid grid-cols-1 lg:grid-cols-1 mt-12 gap-20">
             {
               allProjects
                 .slice()
                 .map((project) => (
                   <ProjectPreviews
                     url={"/project/" + project.slug}
+                    description={project.data.technicalDescription}
                     name={project.data.client}
                     alt={project.data.title}
                     thumbnail={project.data.thumbnail.url}
