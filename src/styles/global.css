@@ -51,3 +51,9 @@
 .mii {
   transform: rotate(180deg);
 }
+
+@media (max-width: 768px) {
+  .sidebar-hidden {
+    display: none;
+  }
+}

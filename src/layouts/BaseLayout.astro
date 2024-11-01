@@ -1,13 +1,23 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
 import Sidebar from "@/components/global/Sidebar.astro";
+
+const isHomepage = Astro.request.url === "/";
 ---
-<html lang="en" >
+<html lang="en">
   <head>
     <BaseHead />
+    <style>
+      /* CSS to hide sidebar on screens smaller than 768px except on the homepage */
+      @media (max-width: 768px) {
+        .sidebar-hidden {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body class="flex min-h-full flex-col bg-neutral-50">
-    <Sidebar />
+    <Sidebar class={isHomepage ? "" : "sidebar-hidden"} />
     <slot />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
