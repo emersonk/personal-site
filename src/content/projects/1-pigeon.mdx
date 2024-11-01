@@ -9,7 +9,7 @@ thumbnail:
   alt: "Pigeon logo"
 ---
 
-### Context:
+### Context
 
 The concept for Pigeon arose because I frequently found myself scrolling through lengthy chats 
 to find things like event plans, meal ideas, or gift requests that had previously been discussed, 
@@ -30,7 +30,7 @@ note taking space in which messages could be quickly copied and pasted.
   />
 </div>
 
-### Technical Architecture:
+### Architecture
 
 From a development standpoint, Pigeon is structured as an iMessage extension utilizing the 
 MSMessagesAppViewController subclass. However, instead of building a standard SwiftUI interface, 
@@ -42,7 +42,7 @@ communication. By linking the React front-end with Swift code on the back-end, I
 achieve smooth interactions, such as dynamically adjusting the screen size or enabling 
 iMessage sharing directly from the (React) interface.
 
-### Rich Text Editor Integration:
+### Rich Text Editor Integration
 
 For the note-taking space, I wanted to ensure users had a rich text editor that was both powerful 
 and easy to use. After considering various options, I chose to implement TipTap, a headless 
@@ -62,7 +62,7 @@ accompany rich text editor development.
   />
 </div>
 
-### Future Plans:
+### Future Plans
 
 Currently, Pigeon relies on Firebase for its database and real time synchronization. However, I'm 
 considering migrating to Supabase in the future. This would be more of an exploratory change, 

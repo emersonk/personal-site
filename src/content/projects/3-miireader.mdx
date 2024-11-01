@@ -10,22 +10,37 @@ thumbnail:
   alt: "Mii"
 ---
 
-### In progress project:
+### More to come
 
-I'm unable to disclose specific details about the inner workings of the app, but I can give an overview of the project.
+While I'm unable to go into specifics of the app's internals for now, I wanted to note another interesting aspect of the project: the
+experimental set up.
 
-### Context:
+### Context
 
-Metabolic Insights (Mii) was founded with the goal of quantifying how the human body processes energy, particularly identifying periods of fat storage versus fat burning. This approach aims to model the body's response to specific foods and generate tailored meal plans aligned with individual health goals.
+Metabolic Insights (Mii) was founded with the general goal of empowering clinicians and customers with information about their body, 
+through non-invasive & repeatable techniques. Of particular interest to me is assessing the body's 
+metabolism, with a focus on identifying intervals and triggers of fat storage versus fat oxidation. Ultimately, the aim is to model the body's 
+response to specific foods and generate tailored meal plans aligned with individual health goals.
 
-Since the inception of Metabolic Insights (Mii), I have been involved in the development of the technology, which initially focused on creating an electrochemical device capable of detecting multiple analytes in saliva without the need for reagents or consumables typical of a standard lateral flow assay. The project has since evolved to utilize a custom lateral flow assay to detect salivary insulin, a known regulator of metabolism. To support this, I developed a smartphone app that functions as the lateral flow assay reader.
+Since the inception of Mii, I have been involved in the development of the technology, 
+which initially focused on creating an electrochemical device capable of detecting multiple analytes in saliva 
+without the need for reagents or consumables typical of a standard lateral flow assay. The project has since 
+evolved to utilize a custom lateral flow assay to detect salivary insulin, a known regulator of metabolism. 
+To support this, I developed a smartphone app that functions as the lateral flow assay reader.
 
-### Experimental setup:
+### Experimental setup
 
-I find scientific and experimental programming on iOS can be cumbersome, especially for tasks like plotting and real-time data visualization. To streamline this, I created a project structure that leverages Python for data analytics, enabling rapid experimentation with algorithms and comprehensive verification and experiment tracking.
+I find scientific and experimental programming in Swift can be cumbersome, particularly for tasks like 
+plotting/visualization. Python already has great solutions to most data problems, so I created a project 
+structure that leverages Python for analytics, enabling rapid algorithm testing cycles and comprehensive result tracking with MLFlow.
 
-The core calculation logic is encapsulated within a dedicated framework, allowing it to be wrapped in a Swift executable and integrated into the Python analysis environment as well embedded into the app itself.
+It's a simple (ie probably common) solution: the core calculation logic is encapsulated within a dedicated, separate framework, 
+allowing it to be wrapped in a Swift executable, which I then import into my Python analysis environment, 
+as well embed directly in the app itself. Obviously, there is some automation that goes on in the background in regards to the build
+and the import of data but that wasn't particularly novel to me.
 
 ### Findings
 
-I have not utilized this structure before, and it may already exist out there but this setup enables me to conduct testing, analysis, and plotting in Python while maintaining consistency with the app’s actual logic. This structure ensures that the same code is deployed both in the application and during analysis, providing a reliable foundation for rigorous testing and experimentation. Much better than Swift playgrounds I find.
+It's an obvious setup in retrospect but I had not utilized this project structure before, despite working on similar products. 
+The setup enables me to conduct testing, analysis, and plotting in Python while maintaining consistency with the app's actual logic. 
+It ensures that the same code is deployed both in the application and during analysis. Much better than Swift playgrounds I find.
