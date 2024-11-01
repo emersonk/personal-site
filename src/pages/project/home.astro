@@ -13,11 +13,11 @@ import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
           <h1 class="font-display text-5xl font-medium text-kotei-800">
             Projects
           </h1>
-          <p class="mt-4 text-sm text-neutral-500">
+          <!-- <p class="mt-4 text-sm text-neutral-500">
             <span class="lgh:blocl">
               A few projects I've made over the years.</span
             >
-          </p>
+          </p> -->
           <div class="grid grid-cols-1 lg:grid-cols-1 mt-12 gap-20">
             {
               allProjects
@@ -25,6 +25,7 @@ import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
                 .map((project) => (
                   <ProjectPreviews
                     url={"/project/" + project.slug}
+                    tag={project.data.tag}
                     description={project.data.technicalDescription}
                     name={project.data.client}
                     alt={project.data.title}

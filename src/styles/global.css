@@ -42,3 +42,12 @@
 .prose-styles {
   @apply prose text-neutral-500  prose-headings:text-kotei-800  prose-pre:rounded-none;
 }
+
+.lightheart {
+  background-color: #fafafa;
+  padding: 4em 3em;
+}
+
+.mii {
+  transform: rotate(180deg);
+}

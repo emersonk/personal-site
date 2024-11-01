@@ -4,6 +4,7 @@ description: Bringing the power of an ECG to smart phones.
 technicalDescription: Photoplethysmography for stress detection
 website: https://lightheart.io/
 status: Archived
+tag: lightheart
 thumbnail:
   url: "/lightheart-logo.png"
   alt: "Light heart logo"
@@ -44,7 +45,7 @@ Light Heart actually calculates HRV and derives the stress index through Photopl
 
 ### Architecture & techniques
 
-As some of the algorithms are proprietary, I will describe what I can. Recording at 30 frames per second for one minute and using the phone's torch as a light source, Light Heart performs on-device image processing, calculating average RGB values for each frame and converting them to HSL (Hue, Saturation, Luminosity) so that it can use luminosity as a proxy for intensity. This array of luminosity values is then sent to an Azure server for further smoothing, filtering and noise removal. Once the signal has been processed, it is interpolated for any missing data due to movement artifacts and the HRV metrics are calculated.
+As some of the algorithms are proprietary, I will describe what I can. Recording at 30 frames per second for one minute and using the phone's torch as a light source, Light Heart performs on-device image processing in Swift, calculating average RGB values for each frame and converting them to HSL (Hue, Saturation, Luminosity) so that it can use luminosity as a proxy for intensity. This array of luminosity values is then sent to an Azure server for further smoothing, filtering and noise removal. Once the signal has been processed, it is interpolated for any missing data due to movement artifacts and the HRV metrics are calculated.
 
 During the reading, Light Heart continuously monitors signal quality, confirming a signal through RGB values and assessing the luminosity stability by performing a Fast Fourier Transform (FFT), the intuition being that a signal without much noise should have a dominant frequency.
 
