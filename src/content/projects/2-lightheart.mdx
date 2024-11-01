@@ -7,14 +7,21 @@ status: Archived
 tag: lightheart
 thumbnail:
   url: "/lightheart-logo.png"
-  alt: "Light heart logo"
+  alt: "Light Heart logo"
 ---
 
 ### Context:
 
-light heart was a project born out of my time at Core Health. It's obvious that many people struggle with stress and anxiety, but there is not an objective way to measure it. According to a 2023 Deloitte survey, 77% of respondents have experienced burnout at their current job [1] and ADAA claims that ~19% of the US population is affected by anxiety [2]. light heart had one stated goal - objectively measure mental stress in real time.
+Light Heart was a project born out of my time at CoreHealth. I spearheaded the research, development, 
+and testing of its algorithms and oversaw the app's design. The main motivation for its development 
+stemmed from the reality that despite high rates of stress and anxiety — according to a 2023 Deloitte 
+survey, 77% of respondents reported experiencing burnout [1], and the ADAA estimates 
+that approximately 19% of the U.S. population is affected by anxiety [2] — there doesn't really exist 
+a single comprehensive way to measure either. 
 
-We achieved something close to that goal shortly after CoreHealth was acquired. For more details, see this validation study published by researchers at Brock University “Examining the Light Heart Mobile Device App for Assessing Human Pulse Interval and Heart Rate Variability: Validation Study”. DOI: 10.2196/56921.[3]
+We achieved something close shortly after CoreHealth was acquired. Further details can be found 
+in the validation study published in partnership with researchers at Brock University: “Examining the Light 
+Heart Mobile Device App for Assessing Human Pulse Interval and Heart Rate Variability: Validation Study” [3].
 
 <div class="grid grid-cols-2 gap-2">
   <img
@@ -27,29 +34,48 @@ We achieved something close to that goal shortly after CoreHealth was acquired. 
   />
 </div>
 
-### The physiology behind light heart:
+### The physiology behind Light Heart:
 
-light heart used a reading of heart rate variability (HRV) to approximate users level of stress. HRV is a measure of variation in time between consecutive heartbeats. It is a measure of the autonomic nervous system's regulation of the heart rate and reflects the dynamic interplay between the sympathetic (fight or flight) and parasympathetic (rest and digest) nervous systems.
+Light Heart used a reading of heart rate variability (HRV) to approximate users level of stress. 
+HRV represents the variation in time between consecutive heartbeats and indicates the autonomic nervous 
+system's regulation of heart rate, reflecting the dynamic interplay between the sympathetic (fight or flight) 
+and parasympathetic (rest and digest) nervous systems.
 
-This itself was a good start towards the goal of measuring stress in real time but complicating thing is the fact that while HRV serves as a general indicator of stress, it can be influenced significantly by physical exertion. To concentrate on mental stress specifically, light heart implemented a proprietary adaptation of Baevsky's stress index—a well-established method for quantifying stress through HRV data. Originally devised by Baevsky and colleagues in the 1960s as part of research for the USSR's space program, this method was intended to evaluate autonomic regulation and monitor the health of Russian cosmonauts under the unique stresses of spaceflight[4].
+Being able to capture HRV by smartphone was a good foundation, but the challenge with using HRV to estimate 
+mental stress is that, while validated as a general stress measure, it's also affected by physical activity. 
+To isolate mental stress, Light Heart proposed a twofold approach. We developed a proprietary adaptation of Baevsky's stress 
+index — a well-recognized HRV-based stress assessment [4] — and aimed to incorporate physical monitoring tools 
+(HealthKit, Apple, and Garmin watches) to control for physical stressors in our model.
 
 ### Photoplethysmography (PPG):
 
-Light Heart actually calculates HRV and derives the stress index through Photoplethysmography (PPG), a technique that measures changes in blood volume by tracking light intensity fluctuations. By placing a fingertip over the smartphone camera, light heart is able to see and quantify these minuscule fluctuations.
+To actually perform the HRV reading, we employed an adapted photoplethysmography (PPG) method to perform HRV readings. 
+PPG measures blood volume changes by tracking light intensity shifts. With a fingertip placed on the 
+smartphone camera, Light Heart was able to capture and quantify these slight fluctuations.
 
-<img
-  class="w-full"
-    src="/lh-vs-ecg.png"
-    alt=""
-  />
+<img class="w-full" src="/lh-vs-ecg.png" alt="" />
+<span class="text-kotei-800 text-xs">
+  Figure demonstrates an average absolute error of ~7 ms between Light Heart and an ECG - a shorter amount of time than a blink.
+</span>
+
 
 ### Architecture & techniques
 
-As some of the algorithms are proprietary, I will describe what I can. Recording at 30 frames per second for one minute and using the phone's torch as a light source, Light Heart performs on-device image processing in Swift, calculating average RGB values for each frame and converting them to HSL (Hue, Saturation, Luminosity) so that it can use luminosity as a proxy for intensity. This array of luminosity values is then sent to an Azure server for further smoothing, filtering and noise removal. Once the signal has been processed, it is interpolated for any missing data due to movement artifacts and the HRV metrics are calculated.
+Since some of the algorithms are proprietary, here's a brief overview: a reading was taken by recording the fingertip at 
+30 FPS for one minute using the phone's torch as the light source. Light Heart conducted on-device image processing in Swift, 
+calculating average RGB values for each frame and converting them to HSL (Hue, Saturation, Luminosity) to use luminosity 
+as a proxy for intensity. 
 
-During the reading, Light Heart continuously monitors signal quality, confirming a signal through RGB values and assessing the luminosity stability by performing a Fast Fourier Transform (FFT), the intuition being that a signal without much noise should have a dominant frequency.
+This array of luminosity values was then sent to an Azure server for further processing—smoothing, 
+filtering, and noise reduction. Afterward, the signal was interpolated to correct any gaps from movement artifacts, and the 
+HRV metrics and stress index were computed and sent back to the phone. Although the goal was to eventually perform all 
+processing on-device, for testing, debugging, and study purposes, we opted to handle the more complex processing off-device.
 
+During the reading, Light Heart continuously monitored signal quality, confirming the signal through RGB values 
+and assessing the luminosity stability by performing an Fast Fourier Transform (FFT) and monitoring in the frequency domain, 
+the intuition being that a signal without much noise should have a single dominant frequency.
 
+---
 
 [1] https://www2.deloitte.com/us/en/pages/about-deloitte/articles/burnout-survey.html
 
