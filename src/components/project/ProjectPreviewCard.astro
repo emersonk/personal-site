@@ -3,11 +3,11 @@ const { url, name, thumbnail, description, tag } = Astro.props;
 ---
 
 <div>
+  <a href={url} title={name}>
   <p class="text-kotei-800 font-semibold text-base mb-2">
     {name}
     <span class="text-sm font-normal text-neutral-500">- {description}</span>
   </p>
-  <a href={url} title={name}>
     <img class={`rounded-[1.5em] w-full ${tag}`} src={thumbnail} alt={name} />
   </a>
 </div>

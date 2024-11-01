@@ -34,7 +34,7 @@ const navItems = [
 
         <p class="mt-2 mb-8 text-sm text-neutral-500">
           You can reach me on 
-          <a href="https://github.com/emersonk" class="text-kotei-600 transition-all hover:text-kotei-1050">Github</a>, 
+          <a href="https://github.com/emersonk" class="text-kotei-600 transition-all hover:text-kotei-1050">GitHub</a>, 
           <a href="https://www.linkedin.com/in/emerson-kirby-94124b222/" class="text-kotei-600 transition-all hover:text-kotei-1050">LinkedIn</a>, 
           and by 
           <button class="copy text-kotei-600 transition-all hover:text-kotei-1050">email.</button>
@@ -48,7 +48,7 @@ const navItems = [
               navigator.clipboard
                 .writeText(email)
                 .then(() => {
-                  htmlButton.innerText = "Copied!";
+                  htmlButton.innerText = "copied!";
                   setTimeout(() => {
                     htmlButton.innerText = "email.";
                   }, 2000); // Reset after 2 seconds
