@@ -2,7 +2,6 @@
 const navItems = [
   { text: "Projects", href: "/project/home" },
   { text: "Resume", href: "/system/style-guide" },
-  { text: "ALL PAGES", href: "/system/overview" },
 ];
 ---
 
@@ -16,7 +15,7 @@ const navItems = [
       class="mx-auto max-w-lg lg:mx-0 lg:flex lg:w-96 lg:max-w-none lg:flex-col"
     >
       <div class="pb-16 pt-20 sm:pb-20 sm:pt-32 lg:py-20">
-        <p class="text-kotei-800">Hi there,<br> My name is</p>
+        <p class="text-kotei-800">Hi there,<br /> My name is</p>
         <a href="/">
           <h1
             class="mt-8 font-display text-5xl md:text-8xl font-medium text-kotei-800 hover:text-kotei-1050"
@@ -25,7 +24,7 @@ const navItems = [
           </h1>
         </a>
         <p class="mt-4 text-sm text-neutral-500">
-          I am a software developer based in Canada. I have many interests, but
+          I am a software engineer based in Canada. I have many interests, but
           in the context of computing, I have been focused on app development
           (both web and mobile), health & wellness tech, and DSP.
         </p>
@@ -34,8 +33,32 @@ const navItems = [
         </p>
 
         <p class="mt-2 mb-8 text-sm text-neutral-500">
-          You can reach me at, github, linked in, email
+          You can reach me on 
+          <a href="https://github.com/emersonk" class="text-kotei-600 transition-all hover:text-kotei-1050">Github</a>, 
+          <a href="https://www.linkedin.com/in/emerson-kirby-94124b222/" class="text-kotei-600 transition-all hover:text-kotei-1050">LinkedIn</a>, 
+          and by 
+          <button class="copy text-kotei-600 transition-all hover:text-kotei-1050">email.</button>
         </p>
+        <script>
+          const buttons = document.querySelectorAll("button.copy");
+          buttons.forEach((button) => {
+            const htmlButton = button as HTMLButtonElement;
+            htmlButton.addEventListener("click", () => {
+              const email = "em@emersonkirby.com";
+              navigator.clipboard
+                .writeText(email)
+                .then(() => {
+                  htmlButton.innerText = "Copied!";
+                  setTimeout(() => {
+                    htmlButton.innerText = "email.";
+                  }, 2000); // Reset after 2 seconds
+                })
+                .catch((err) => {
+                  console.error("Failed to copy: ", err);
+                });
+            });
+          });
+        </script>
 
         {
           navItems.map((item) => (

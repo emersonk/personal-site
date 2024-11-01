@@ -3,21 +3,19 @@ import "../styles/global.css";
 import Metas from "./seo/Metas.astro";
 import Favicons from "./seo/Favicons.astro";
 const {
-  title = "Lexington Starter",
+  title = "Emerson Kirby",
   description = "#",
   url,
   socialImage = "/social-preview-image.png",
   twitterImage = "/twitter-preview-image.png", // Assuming you have a separate image for Twitter
-  author = "Lexington Themes",
+  author = "Emerson",
 } = Astro.props;
 const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
 ---
 <Metas
   title={title}
   description={description.substring(0, 100)}
-  url={Astro.site
-    ? `${Astro.site}/${sanitizedTitle}`
-    : `https://lexingtonthemes.com/${sanitizedTitle}`}
+  url={Astro.site}
   image={socialImage}
   author={author}
   twitterImage={twitterImage}

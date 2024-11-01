@@ -14,6 +14,6 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'https://lexingtonthemes.com',
+  site: 'www.emersonkirby.com',
   integrations: [tailwind(), sitemap(), mdx()]
 });
