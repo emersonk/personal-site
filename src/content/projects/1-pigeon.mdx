@@ -11,7 +11,13 @@ thumbnail:
 
 ### Context:
 
-The concept for Pigeon arose because I often found myself scrolling through lengthy chat threads to find key information like dates, meal ideas, or gift requests. The idea was to create a tool that would allow me to pin these messages somewhere in iMessage. However, due to the unfortunate but unsurprisingly restricted nature of Apple's iMessage APIs, it became clear that direct access to message content from within the iMessage sandbox was not possible. Because of this I settled for a note taking space in which messages could be quickly copied and pasted.
+The concept for Pigeon arose because I frequently found myself scrolling through lengthy chats 
+to find things like event plans, meal ideas, or gift requests that had previously been discussed, 
+only to find that it was long gone. The original intent was to create a tool that would allow me to 'pin' 
+these messages somewhere in iMessage. However, due to the unfortunate 
+(but unsurprising) restricted nature of Apple's iMessage APIs, it became clear that a pinning 
+concept was unworkable from within the iMessage extension sandbox. Due to this, I settled upon a 
+note taking space in which messages could be quickly copied and pasted.
 
 <div class="grid grid-cols-2 gap-2">
   <img
@@ -26,13 +32,23 @@ The concept for Pigeon arose because I often found myself scrolling through leng
 
 ### Technical Architecture:
 
-From a development standpoint, Pigeon is structured as an iMessage extension utilizing the MSMessagesAppViewController subclass. However, instead of building a standard SwiftUI interface, I opted to use a WKWebView, which allowed the front-end interface to be built using React. This hybrid approach gave me greater flexibility in design and functionality.
+From a development standpoint, Pigeon is structured as an iMessage extension utilizing the 
+MSMessagesAppViewController subclass. However, instead of building a standard SwiftUI interface, 
+I opted to use a WKWebView, which allowed the front-end interface to be built using React. 
+This hybrid approach gave me greater flexibility in design and functionality.
 
-One of the more technically interesting aspects of the project was implementing web-to-native communication. By linking the React front-end with Swift code on the back-end, I was able to achieve smooth interactions, such as dynamically adjusting the screen size or enabling iMessage sharing directly from the (React) interface.
+One of the more technically interesting aspects of the project was implementing web-to-native 
+communication. By linking the React front-end with Swift code on the back-end, I was able to 
+achieve smooth interactions, such as dynamically adjusting the screen size or enabling 
+iMessage sharing directly from the (React) interface.
 
 ### Rich Text Editor Integration:
 
-For the note-taking space, I wanted to ensure users had a rich text editor that was both powerful and easy to use. After considering various options, I chose to implement TipTap, a headless editor framework built on ProseMirror. TipTap proved to be an excellent choice, offering a flexible, customizable editing experience while abstracting away many of the complexities that typically accompany rich text editor development.
+For the note-taking space, I wanted to ensure users had a rich text editor that was both powerful 
+and easy to use. After considering various options, I chose to implement TipTap, a headless 
+editor framework built on ProseMirror. TipTap proved to be an excellent choice, offering a flexible, 
+customizable editing experience while abstracting away many of the complexities that typically 
+accompany rich text editor development.
 
 
 <div class="grid grid-cols-2 gap-2">
@@ -48,4 +64,6 @@ For the note-taking space, I wanted to ensure users had a rich text editor that 
 
 ### Future Plans:
 
-Currently, Pigeon relies on Firebase for its database management, handling user data and synchronization efficiently. However, I’m considering migrating to Supabase in the future. This would be more of an exploratory change, aimed at seeing how Supabase compares in terms of performance and developer experience.
+Currently, Pigeon relies on Firebase for its database and real time synchronization. However, I'm 
+considering migrating to Supabase in the future. This would be more of an exploratory change, 
+aimed at seeing how Supabase compares in terms of performance and developer experience.
