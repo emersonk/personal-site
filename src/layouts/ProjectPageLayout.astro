@@ -14,18 +14,44 @@ const { frontmatter } = Astro.props;
           <p class="mt-4 text-sm text-neutral-500">
             {frontmatter.description}
           </p>
-          <p class="text-neutral-500 mt-8 uppercase text-sm">Website</p>
-          <p
-            class="italic font-display font-medium text-kotei-800 hover:text-kotei-1050"
-          >
-            <a href={frontmatter.website}>{frontmatter.website}</a>
-          </p>
-          <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p>
-          <p
-            class="font-display font-medium text-kotei-800"
-          >
-            {frontmatter.status}
-          </p>
+          <!-- <div class="grid grid-cols-2 gap-2">
+            <div>
+              <p class="text-neutral-500 mt-8 uppercase text-sm">Website</p>
+              <p
+                class="italic font-display font-medium text-kotei-800 hover:text-kotei-1050"
+              >
+                <a href={frontmatter.website}>{frontmatter.website}</a>
+              </p>
+            </div>
+            <div>
+              <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p>
+              <p
+                class="font-display font-medium text-kotei-800"
+              >
+                {frontmatter.status}
+              </p>
+            </div>
+          </div> -->
+
+          <div class="flex justify-between">
+            <div class="flex-item">
+              <p class="text-neutral-500 mt-8 uppercase text-sm">Website</p>
+              <p
+                class="italic font-display font-medium text-kotei-800 hover:text-kotei-1050"
+              >
+                <a href={frontmatter.website}>{frontmatter.website}</a>
+              </p>
+            </div>
+            <div class="flex-item">
+              <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p>
+              <p
+                class="font-display font-medium text-kotei-800"
+              >
+                {frontmatter.status}
+              </p>
+            </div>
+          </div>
+
           <img
             class="mt-8"
             src={frontmatter.thumbnail.url}
