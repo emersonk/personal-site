@@ -14,6 +14,6 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'www.emersonkirby.com',
+  site: 'https://emersonkirby.com',
   integrations: [tailwind(), sitemap(), mdx()]
 });
