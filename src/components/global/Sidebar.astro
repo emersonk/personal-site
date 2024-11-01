@@ -3,12 +3,10 @@ const navItems = [
   { text: "Projects", href: "/project/home" },
   // { text: "Resume", href: "/system/style-guide" },
 ];
-
-const isHomepage = Astro.request.url === "/";
 ---
 
 <div
-  class=`${isHomepage ? "" : "sm:hidden"} relative flex-none overflow-hidden px-8 lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex lg:px-0`
+  class="relative flex-none overflow-hidden px-8 lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex lg:px-0"
 >
   <div
     class="flex w-full bg-neutral-50 lg:pointer-events-auto lg:mr-[calc(max(2rem,50%-38rem)+39.7rem)] lg:min-w-[32rem] lg:overflow-y-auto lg:overflow-x-hidden lg:pl-[max(4rem,calc(50%-38rem))]"
@@ -35,22 +33,11 @@ const isHomepage = Astro.request.url === "/";
         </p>
 
         <p class="mt-2 mb-8 text-sm text-neutral-500">
-          You can reach me by
-          <button
-            class="copy text-kotei-600 transition-all hover:text-kotei-1050"
-            >email</button
-          >
+          You can reach me by 
+          <button class="copy text-kotei-600 transition-all hover:text-kotei-1050">email</button>
           and on
-          <a
-            href="https://www.linkedin.com/in/emerson-kirby-94124b222/"
-            class="text-kotei-600 transition-all hover:text-kotei-1050"
-            >LinkedIn</a
-          > &
-          <a
-            href="https://github.com/emersonk"
-            class="text-kotei-600 transition-all hover:text-kotei-1050"
-            >GitHub.</a
-          >
+          <a href="https://www.linkedin.com/in/emerson-kirby-94124b222/" class="text-kotei-600 transition-all hover:text-kotei-1050">LinkedIn</a> &
+          <a href="https://github.com/emersonk" class="text-kotei-600 transition-all hover:text-kotei-1050">GitHub.</a>
         </p>
         <script>
           const buttons = document.querySelectorAll("button.copy");
