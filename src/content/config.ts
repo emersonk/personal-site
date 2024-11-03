@@ -7,6 +7,7 @@ const work = defineCollection({
     technicalDescription: z.string().optional(),
     website: z.string().optional(),
     status: z.string().optional(),
+    statusLight: z.string().optional(),
     thumbnail: z.object({
       url: z.string(),
       alt: z.string(),

@@ -57,3 +57,42 @@
     display: none;
   }
 }
+
+@keyframes blink {
+  0% {
+    box-shadow: 0 0 10px;
+  }
+  50% {
+    box-shadow: 0 0 30px;
+  }
+  100% {
+    box-shadow: 0 0 10px;
+  }
+}
+
+.status {
+  display: inline-block;
+  margin-left: 15px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+.live {
+  background: #00d563;
+  border: 1px solid #00bc57;
+  color: #00d563;
+}
+
+.archived {
+  background: #ffc400;
+  border: 1px solid #e6b000;
+  color: #ffc400;
+}
+
+.in-development {
+  background: #4c84ff;
+  border: 1px solid #3372ff;
+  color: #4c84ff;
+}

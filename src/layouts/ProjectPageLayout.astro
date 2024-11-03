@@ -45,9 +45,9 @@ const { frontmatter } = Astro.props;
             <div class="flex-item">
               <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p>
               <p
-                class="font-display font-medium text-kotei-800"
+                class="font-display font-medium text-kotei-800 flex items-center"
               >
-                {frontmatter.status}
+              {frontmatter.status}<span class={`status ${frontmatter.statusLight}`}></span>
               </p>
             </div>
           </div>
