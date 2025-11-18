@@ -1,0 +1,52 @@
+{
+  "$ref": "#/definitions/projects",
+  "definitions": {
+    "projects": {
+      "type": "object",
+      "properties": {
+        "client": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "technicalDescription": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "statusLight": {
+          "type": "string"
+        },
+        "thumbnail": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "alt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url",
+            "alt"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "thumbnail"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
