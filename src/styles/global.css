@@ -116,16 +116,18 @@
   color: #4c84ff;
 }
 
-/* Starburst badge sticker */
+
+/* -----------------------------
+   Starburst badge — Copy/paste
+   Static glow + rotating core
+   ----------------------------- */
+
 .starburst-badge {
-  /* Modern animated gradient starburst */
   --size: clamp(64px, 7vw, 104px);
-  --speed: 6s;
-  /* gradient animation duration */
+  --speed: 3s;        /* gradient pan speed */
+  --spin-speed: 20s;  /* rotation speed */
   --glow: 22px;
-  /* outer glow radius */
   --stroke: 2px;
-  /* inner white stroke thickness */
   --g1: #7fffd4;
   --g2: #4facfe;
   --g3: #a0b4ff;
@@ -137,93 +139,119 @@
   right: 0.5rem;
   width: var(--size);
   height: var(--size);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
   pointer-events: none;
   isolation: isolate;
+  z-index: 5;
 
-  /* text */
+  /* keep text styling here */
   color: #fff;
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 0.04em;
   line-height: 1;
-
-  clip-path: polygon(100% 50%, 89.34% 61.55%, 92.06% 77.03%, 76.85% 80.99%, 70.77% 95.48%, 55.83% 90.58%, 42.88% 99.49%, 32.97% 87.29%, 17.26% 87.79%, 15.51% 72.17%, 2.03% 64.09%, 9% 50%, 2.03% 35.91%, 15.51% 27.83%, 17.26% 12.21%, 32.97% 12.71%, 42.88% 0.51%, 55.83% 9.42%, 70.77% 4.52%, 76.85% 19.01%, 92.06% 22.97%, 89.34% 38.45%);
-
+  transform: translateZ(0); /* promotes to its own layer */
+  overflow: visible; /* allow glow outside */
 }
 
-/* Rotating visual layer inside the badge */
+/* Static silhouette, border and glow — never rotates */
+.starburst-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  /* the visible static outline + glow */
+  clip-path: polygon(
+    100% 50%, 89.34% 61.55%, 92.06% 77.03%, 76.85% 80.99%,
+    70.77% 95.48%, 55.83% 90.58%, 42.88% 99.49%, 32.97% 87.29%,
+    17.26% 87.79%, 15.51% 72.17%, 2.03% 64.09%, 9% 50%,
+    2.03% 35.91%, 15.51% 27.83%, 17.26% 12.21%, 32.97% 12.71%,
+    42.88% 0.51%, 55.83% 9.42%, 70.77% 4.52%, 76.85% 19.01%,
+    92.06% 22.97%, 89.34% 38.45%
+  );
+
+  background: transparent;
+
+  /* static border + glow (these do not rotate) */
+  border: 2px solid rgba(255,255,255,0.85);
+  box-shadow:
+    0 0 var(--glow) rgba(255,255,255,0.25),
+    0 0 calc(var(--glow) * 1.5) rgba(79, 172, 254, 0.15),
+    0 6px 18px rgba(0,0,0,0.22);
+  pointer-events: none;
+  -webkit-mask-composite: exclude; /* harmless here */
+}
+
+/* Rotating starburst core — gradient + rotation only */
 .starburst-rotating {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  clip-path: polygon(100% 50%, 89.34% 61.55%, 92.06% 77.03%, 76.85% 80.99%, 70.77% 95.48%, 55.83% 90.58%, 42.88% 99.49%, 32.97% 87.29%, 17.26% 87.79%, 15.51% 72.17%, 2.03% 64.09%, 9% 50%, 2.03% 35.91%, 15.51% 27.83%, 17.26% 12.21%, 32.97% 12.71%, 42.88% 0.51%, 55.83% 9.42%, 70.77% 4.52%, 76.85% 19.01%, 92.06% 22.97%, 89.34% 38.45%);
-  background: linear-gradient(135deg, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
+  z-index: 0; /* behind the label, above background pseudo */
+  transform-origin: 50% 50%;
+
+  clip-path: polygon(
+    100% 50%, 89.34% 61.55%, 92.06% 77.03%, 76.85% 80.99%,
+    70.77% 95.48%, 55.83% 90.58%, 42.88% 99.49%, 32.97% 87.29%,
+    17.26% 87.79%, 15.51% 72.17%, 2.03% 64.09%, 9% 50%,
+    2.03% 35.91%, 15.51% 27.83%, 17.26% 12.21%, 32.97% 12.71%,
+    42.88% 0.51%, 55.83% 9.42%, 70.77% 4.52%, 76.85% 19.01%,
+    92.06% 22.97%, 89.34% 38.45%
+  );
+
+  background: linear-gradient(135deg,
+    var(--g1), var(--g2), var(--g3), var(--g4), var(--g5)
+  );
   background-size: 400% 400%;
-  animation: 
+
+  /* only these animations: gradient pan + rotation */
+  animation:
     badgeGradient var(--speed) ease infinite,
-    starburst-spin 20s linear infinite;
-  box-shadow:
-    0 0 var(--glow) rgba(255, 255, 255, 0.25),
-    0 0 calc(var(--glow) * 1.5) rgba(79, 172, 254, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.2);
-  border: 2px solid rgba(255,255,255,0.85);
+    starburst-spin var(--spin-speed) linear infinite;
 }
 
-/* (modern variant does not use ::before) */
-
-
-/* inner white stroke + soft highlight above the gradient */
-
+/* Keep label stationary and readable */
 .starburst-label {
   position: relative;
-  z-index: 1;
-  /* above both pseudo elements */
+  z-index: 2;
+  color: var(--text-color, #fff);
   font-weight: 800;
-  color: var(--text-color);
-  font-size: clamp(0.52rem, 0.3vw + 0.44rem, 0.78rem);
-  line-height: 1.08;
   text-align: center;
   letter-spacing: 0.02em;
+  line-height: 1.08;
+  font-size: clamp(0.52rem, 0.3vw + 0.44rem, 0.78rem);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+  pointer-events: none;
 }
 
 .starburst-line {
   display: block;
 }
 
+/* Gradient pan */
 @keyframes badgeGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
+/* Simple rotation — no scale */
 @keyframes starburst-spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
+/* Pause on hover */
 @media (hover:hover) {
   .starburst-badge:hover .starburst-rotating {
     animation-play-state: paused;
   }
 }
 
+/* Respect user reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .starburst-rotating {
-    animation: none;
-  }
+  .starburst-rotating { animation: none; }
 }
