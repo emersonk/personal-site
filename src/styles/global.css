@@ -153,41 +153,31 @@
 
   clip-path: polygon(100% 50%, 89.34% 61.55%, 92.06% 77.03%, 76.85% 80.99%, 70.77% 95.48%, 55.83% 90.58%, 42.88% 99.49%, 32.97% 87.29%, 17.26% 87.79%, 15.51% 72.17%, 2.03% 64.09%, 9% 50%, 2.03% 35.91%, 15.51% 27.83%, 17.26% 12.21%, 32.97% 12.71%, 42.88% 0.51%, 55.83% 9.42%, 70.77% 4.52%, 76.85% 19.01%, 92.06% 22.97%, 89.34% 38.45%);
 
+}
 
-  /* animated iridescent gradient */
+/* Rotating visual layer inside the badge */
+.starburst-rotating {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(100% 50%, 89.34% 61.55%, 92.06% 77.03%, 76.85% 80.99%, 70.77% 95.48%, 55.83% 90.58%, 42.88% 99.49%, 32.97% 87.29%, 17.26% 87.79%, 15.51% 72.17%, 2.03% 64.09%, 9% 50%, 2.03% 35.91%, 15.51% 27.83%, 17.26% 12.21%, 32.97% 12.71%, 42.88% 0.51%, 55.83% 9.42%, 70.77% 4.52%, 76.85% 19.01%, 92.06% 22.97%, 89.34% 38.45%);
   background: linear-gradient(135deg, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
   background-size: 400% 400%;
-  animation: badgeGradient var(--speed) ease infinite;
-
-  /* glow */
+  animation: 
+    badgeGradient var(--speed) ease infinite,
+    starburst-spin 20s linear infinite;
   box-shadow:
     0 0 var(--glow) rgba(255, 255, 255, 0.25),
-    0 0 calc(var(--glow) * 1.5) rgba(79, 172, 254, 0.15);
+    0 0 calc(var(--glow) * 1.5) rgba(79, 172, 254, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255,255,255,0.85);
 }
 
 /* (modern variant does not use ::before) */
 
 
 /* inner white stroke + soft highlight above the gradient */
-.starburst-badge::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-
-  /* same silhouette */
-  clip-path: inherit;
-
-  /* draw a perfect inner stroke via mask */
-  -webkit-mask:
-    radial-gradient(circle, #000 98%, transparent 100%) content-box,
-    radial-gradient(circle, #000 98%, transparent 100%);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  background: rgba(255, 255, 255, 0.9);
-  padding: var(--stroke);
-}
 
 .starburst-label {
   position: relative;
@@ -227,13 +217,13 @@
 }
 
 @media (hover:hover) {
-  .starburst-badge:hover {
+  .starburst-badge:hover .starburst-rotating {
     animation-play-state: paused;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .starburst-badge {
+  .starburst-rotating {
     animation: none;
   }
 }
