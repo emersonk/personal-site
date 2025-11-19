@@ -20,10 +20,9 @@ import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
                 .map((project) => (
                   <ProjectPreviews
                     url={"/project/" + project.slug}
-                    tag={project.data.tag}
+                    slug={project.slug}
                     description={project.data.technicalDescription}
                     name={project.data.client}
-                    alt={project.data.title}
                     thumbnail={project.data.thumbnail.url}
                   />
                 ))

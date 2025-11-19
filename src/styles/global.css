@@ -1,31 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
   font-family: Inter, sans-serif;
   font-feature-settings:
-  "liga" 1,
-  "calt" 1, /* Contextual Alternates */
-  "dlig" 1, /* Discretionary Ligatures */
-  "ss07" 1, /* fSquare punctuation */
-  "ss08" 1, /* Square quotes */
-  "zero" 1, /* Slashed zero */
-  "tnum" 1, /* Tabular numbers */
-    "cv03" 1, /* Open six */
-    "cv04" 1, /* Open nine */
-    "cv01" 1, /* Alternate one */
-    "cv09", /* Flat-top three */
-    "cv02" 1; /* Open 4 */
+    "liga" 1,
+    "calt" 1,
+    /* Contextual Alternates */
+    "dlig" 1,
+    /* Discretionary Ligatures */
+    "ss07" 1,
+    /* fSquare punctuation */
+    "ss08" 1,
+    /* Square quotes */
+    "zero" 1,
+    /* Slashed zero */
+    "tnum" 1,
+    /* Tabular numbers */
+    "cv03" 1,
+    /* Open six */
+    "cv04" 1,
+    /* Open nine */
+    "cv01" 1,
+    /* Alternate one */
+    "cv09",
+    /* Flat-top three */
+    "cv02" 1;
+  /* Open 4 */
 }
+
 @supports (font-variation-settings: normal) {
+
   /* Use variable font if supported */
   :root {
     font-family: InterVariable, sans-serif;
   }
 }
+
 .splide__pagination__page.is-active {
   background: #333;
 }
+
 :root {
   --astro-code-color-text: #2d4b65;
   --astro-code-color-background: #fafafa;
@@ -34,13 +50,14 @@
   --astro-code-token-comment: #1c2a39;
   --astro-code-token-keyword: #2d4b65;
   --astro-code-token-parameter: #ffffff;
-  --astro-code-token-function:#8b75db;
+  --astro-code-token-function: #8b75db;
   --astro-code-token-string-expression: #3f6d95;
   --astro-code-token-punctuation: #7a8028;
   --astro-code-token-link: #7a8028;
 }
+
 .prose-styles {
-  @apply prose text-neutral-500  prose-headings:text-kotei-800  prose-pre:rounded-none;
+  @apply prose text-neutral-500 prose-headings:text-kotei-800 prose-pre:rounded-none;
 }
 
 .lightheart {
@@ -62,9 +79,11 @@
   0% {
     box-shadow: 0 0 10px;
   }
+
   50% {
     box-shadow: 0 0 30px;
   }
+
   100% {
     box-shadow: 0 0 10px;
   }
@@ -95,4 +114,126 @@
   background: #4c84ff;
   border: 1px solid #3372ff;
   color: #4c84ff;
+}
+
+/* Starburst badge sticker */
+.starburst-badge {
+  /* Modern animated gradient starburst */
+  --size: clamp(64px, 7vw, 104px);
+  --speed: 6s;
+  /* gradient animation duration */
+  --glow: 22px;
+  /* outer glow radius */
+  --stroke: 2px;
+  /* inner white stroke thickness */
+  --g1: #7fffd4;
+  --g2: #4facfe;
+  --g3: #a0b4ff;
+  --g4: #ff89c6;
+  --g5: #ffc36c;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+  isolation: isolate;
+
+  /* text */
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+
+  clip-path: polygon(100% 50%, 89.34% 61.55%, 92.06% 77.03%, 76.85% 80.99%, 70.77% 95.48%, 55.83% 90.58%, 42.88% 99.49%, 32.97% 87.29%, 17.26% 87.79%, 15.51% 72.17%, 2.03% 64.09%, 9% 50%, 2.03% 35.91%, 15.51% 27.83%, 17.26% 12.21%, 32.97% 12.71%, 42.88% 0.51%, 55.83% 9.42%, 70.77% 4.52%, 76.85% 19.01%, 92.06% 22.97%, 89.34% 38.45%);
+
+
+  /* animated iridescent gradient */
+  background: linear-gradient(135deg, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
+  background-size: 400% 400%;
+  animation: badgeGradient var(--speed) ease infinite;
+
+  /* glow */
+  box-shadow:
+    0 0 var(--glow) rgba(255, 255, 255, 0.25),
+    0 0 calc(var(--glow) * 1.5) rgba(79, 172, 254, 0.15);
+}
+
+/* (modern variant does not use ::before) */
+
+
+/* inner white stroke + soft highlight above the gradient */
+.starburst-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  /* same silhouette */
+  clip-path: inherit;
+
+  /* draw a perfect inner stroke via mask */
+  -webkit-mask:
+    radial-gradient(circle, #000 98%, transparent 100%) content-box,
+    radial-gradient(circle, #000 98%, transparent 100%);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  background: rgba(255, 255, 255, 0.9);
+  padding: var(--stroke);
+}
+
+.starburst-label {
+  position: relative;
+  z-index: 1;
+  /* above both pseudo elements */
+  font-weight: 800;
+  color: var(--text-color);
+  font-size: clamp(0.52rem, 0.3vw + 0.44rem, 0.78rem);
+  line-height: 1.08;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+}
+
+.starburst-line {
+  display: block;
+}
+
+@keyframes badgeGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes starburst-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (hover:hover) {
+  .starburst-badge:hover {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starburst-badge {
+    animation: none;
+  }
 }

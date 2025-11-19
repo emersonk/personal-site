@@ -1,13 +1,31 @@
 ---
-const { url, name, thumbnail, description, tag } = Astro.props;
+const { url, name, thumbnail, description, slug } = Astro.props;
+const showPigeonBadge =
+  typeof slug === "string" && slug.toLowerCase().includes("pigeon");
+const badgeText = "#74 on the iMessage App Store";
 ---
 
 <div>
-  <a href={url} title={name}>
+  <a href={url} title={name} class="block">
   <p class="text-kotei-800 font-semibold text-base mb-2">
     {name}
     <span class="text-sm font-normal text-neutral-500">- {description}</span>
   </p>
-    <img class={`rounded-[1.5em] w-full ${tag}`} src={thumbnail} alt={name} />
+    <div class="relative inline-block">
+      {showPigeonBadge && (
+        <span
+          class="starburst-badge"
+          aria-label={badgeText}
+          title={badgeText}
+        >
+          <span class="starburst-label" aria-hidden="true">
+            <span class="starburst-line">#74 on</span>
+            <span class="starburst-line">iMessage</span>
+            <span class="starburst-line">App Store</span>
+          </span>
+        </span>
+      )}
+      <img class="rounded-[1.5em] w-full" src={thumbnail} alt={name} />
+    </div>
   </a>
 </div>
