@@ -223,9 +223,15 @@
   text-align: center;
   letter-spacing: 0.02em;
   line-height: 1.08;
-  font-size: clamp(0.52rem, 0.3vw + 0.44rem, 0.78rem);
+  font-size: 0.67rem;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
   pointer-events: none;
+}
+
+@media (max-width: 1000px) {
+  .starburst-label  {
+    font-size: 0.5rem;
+  }
 }
 
 .starburst-line {
