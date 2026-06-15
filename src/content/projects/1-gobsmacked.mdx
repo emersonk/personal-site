@@ -1,7 +1,7 @@
 ---
 client: Gobsmacked
-description: A recipe platform for formatting, planning, and grocery automation.
-technicalDescription: Astro, SwiftUI, Appwrite, and Python across a four-product system
+description: A recipe web app for turning recipes into fast, cook-friendly cards.
+technicalDescription: Astro, Appwrite, and AI for recipe visualization
 website: https://gobsmacked.io
 status: In Development
 statusLight: in-development
@@ -10,13 +10,16 @@ thumbnail:
   alt: "Gobsmacked recipe card preview"
 ---
 
-### Context
+### Data mise en place
 
-I love to cook, especially Cajun and Creole food. My typical workflow for cooking is I find a recipe I want to try, read through it once, and then leave the page open while I cook so I can quickly check ingredient quantities, timings, and steps. I am not actually following the steps per say, but I do like being able to reference the recipe. Gobsmacked started as an attempt to make recipes visually better suited to that kind of quick referencing.
+I love to cook, particularly Cajun and Creole food (Paul Prudhomme is my favourite chef of all time, look him up if you are 
+not familiar!). My typical workflow for cooking is I find a recipe I want to try, read through it once, and then leave the 
+page open while I cook so I can quickly check ingredient quantities, timings, and steps. I am not actually following the 
+steps per say, but I do like being able to reference the recipe. Gobsmacked started as an attempt to make recipes visually 
+better suited to that kind of quick referencing. It seems to me it is 50/50 whether people like to see recipes in this visual format,
+or they hate it, and I am okay with that.
 
 Currently, it automatically converts recipes into my take on a tree/graph/tabular style visualization. Eventually, I would like it to become a personal kitchen and recipe management system, but for now I am focused on improving the recipe display itself.
-
-The current version uses llm’s to convert a recipe into a JSON tree structure, which is then rendered with CSS grid. So far, it works well enough, but some recipes are still difficult or impossible to render cleanly, and obviously llm’s occasionally produces trees that are not especially useful.
 
 <img
   src="/gobsmacked-card-hero.png"
@@ -24,35 +27,30 @@ The current version uses llm’s to convert a recipe into a JSON tree structure,
 />
 
 
-### Product architecture
+What I love about gobsmacked is that it spans both product and systems work. The site has to 
+feel simple and calm for the user, but behind that there is a fair amount of structure needed to ingest messy
+recipe pages, normalize them, and preserve enough meaning to render them cleanly.
 
-Gobsmacked is now split into four coordinated products that share a common data model:
+### Recipe ingestion and rendering
 
-- `gobsmacked-web` handles recipe ingestion, formatting, discovery, account flows, and persistence.
-- `gobsmacked-meal-planner` is an iOS app for planning meals, swiping through recipe options, reviewing plans, and building grocery lists.
-- `gobsmacked-agent` receives grocery lists and performs browser-assisted grocery ordering.
-- `gobsmacked-tools` owns schema management, contract generation, and the local agent console I use for debugging and operations.
+One of the main technical problems is just how unstructured recipe pages really are. Piping them into 
+a UI that feels deliberate and consistent across all recipes requires lots more wrangling than one might expect, as well as some fun and inventive data structures. 
+Recipes come in with inconsistent formatting, uneven step structure, and wildly different 
+ingredient conventions, so the ingestion flow has to do quite a bit of cleanup before the display layer can make good decisions.
 
-That breakdown has been one of the more interesting parts of the work. Each product has very different UX and runtime constraints, but they still need to behave like one coherent system.
+The current version uses LLM-assisted parsing to turn those pages into structured JSON that the app can 
+render as compact recipe cards. A lot of the work has been in shaping that pipeline so the output is not just technically valid, 
+but actually useful to someone glancing at a screen mid-cook.
 
-### Shared contracts and source of truth
+On the frontend, I built the card presentation around CSS grid so ingredient groupings, quantities, 
+timings, and steps can be scanned quickly instead of read like a blog post. That visual system is the heart of the product for me. 
+It is where parsing quality, layout decisions, and cooking ergonomics all meet.
 
-One of the main technical problems I focused on was keeping all of those surfaces aligned. Gobsmacked uses Appwrite as the durable source of truth, and I put shared contract definitions in one central schema layer rather than letting each product drift into its own version of the data model.
+### Future work
 
-From that shared schema, I generate product-local types for the web app, the Python agent, the local tooling, and the Swift iOS app. That lets me keep concepts like recipe variants, grocery items, meal-plan state, delivery preferences, and agent run status synchronized across multiple languages without relying on hand-maintained DTOs.
+I built the account and persistence layer so recipes can move from one-off experiments into a growing personal collection 
+instead of disappearing as soon as the tab closes. It is here that the aforementioned personal kitchen and recipe management system will be born from.
 
-This has been especially valuable because the system is not just CRUD-heavy. It includes generated types for user-facing app state, API payloads, agent runs, and parser output, so schema changes have a fairly wide blast radius unless they are handled carefully.
-
-### Meal planning and grocery automation
-
-The iOS side of Gobsmacked takes the saved recipe data and turns it into a planning workflow. I built a meal-planning flow that lets users configure a plan, swipe through candidate recipes for each slot, review their selections, and build a grocery list from the resulting plan.
-
-From there, the grocery list can be handed off to the agent service. The agent reads user-scoped preferences and history, receives the list through an API payload, and then uses browser automation to move through the grocery-ordering flow. I also added a lightweight chat loop so the system can surface ambiguity back to the user instead of pretending every decision is deterministic.
-
-What I like about this part of the project is that it turns Gobsmacked from a recipe reader into an execution tool. The product is no longer just helping someone understand what to cook; it is helping them close the loop from recipe discovery to ingredients in cart.
-
-### Why this project stands out
-
-Gobsmacked has been one of the clearest examples in my work of product design and systems design pulling equally hard. There is a consumer-facing UX problem at the center of it, but the technical challenge is really about keeping multiple apps, services, and languages moving together without losing clarity.
-
-It is also the kind of project I enjoy most: a mix of interface work, state modeling, cross-platform architecture, and applied automation, all in service of making a messy real-world task feel simpler.
+Appwrite acts as the durable source of truth for the web app, which keeps user data, saved recipes, and parser output in one place. 
+That has been especially helpful while iterating on the product, because changes to recipe structure and user flows tend to ripple 
+through both the ingestion pipeline and the interface at the same time.
