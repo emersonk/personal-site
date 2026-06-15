@@ -12,20 +12,17 @@ thumbnail:
 
 ### Context
 
-Gobsmacked began with a simple product question: why are so many online recipes still optimized for storytelling, ads, and search ranking instead of the actual act of cooking? I wanted to build a system that could turn long, cluttered recipe pages into something much more usable at the stove: a compact, structured card that is quick to scan and easy to follow.
+I love to cook, especially Cajun and Creole food. My typical workflow for cooking is I find a recipe I want to try, read through it once, and then leave the page open while I cook so I can quickly check ingredient quantities, timings, and steps. I am not actually following the steps per say, but I do like being able to reference the recipe. Gobsmacked started as an attempt to make recipes visually better suited to that kind of quick referencing.
 
-As the product matured, it became clear that recipe formatting was only one part of the workflow. If a user has already found, saved, and understood a recipe, the next questions are usually what to make this week and how to actually get the ingredients. That pushed Gobsmacked beyond a single app and into a connected product system.
+Currently, it automatically converts recipes into my take on a tree/graph/tabular style visualization. Eventually, I would like it to become a personal kitchen and recipe management system, but for now I am focused on improving the recipe display itself.
 
-<div class="grid grid-cols-2 gap-2">
-  <img
-    src="/gobsmacked-card-hero.png"
-    alt="A Gobsmacked recipe card preview"
-  />
-  <img
-    src="/gobsmacked-card-detail.png"
-    alt="A second Gobsmacked recipe card preview"
-  />
-</div>
+The current version uses llm’s to convert a recipe into a JSON tree structure, which is then rendered with CSS grid. So far, it works well enough, but some recipes are still difficult or impossible to render cleanly, and obviously llm’s occasionally produces trees that are not especially useful.
+
+<img
+  src="/gobsmacked-card-hero.png"
+  alt="A Gobsmacked recipe card preview"
+/>
+
 
 ### Product architecture
 
