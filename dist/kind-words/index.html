@@ -30,45 +30,23 @@ and on
 <a href="https://github.com/emersonk" class="text-kotei-600 transition-all hover:text-kotei-1050">GitHub.</a> </p> <script type="module">const n=document.querySelectorAll("button.copy");n.forEach(t=>{const e=t;e.addEventListener("click",()=>{navigator.clipboard.writeText("em@emersonkirby.com").then(()=>{e.innerText="copied!",setTimeout(()=>{e.innerText="email"},2e3)}).catch(o=>{console.error("Failed to copy: ",o)})})});</script> <a class="flex items-center font-semibold text-kotei-600 transition-all hover:text-kotei-1050" href="/project/home"> works &nbsp; &rarr;
 </a><a class="flex items-center font-semibold text-kotei-600 transition-all hover:text-kotei-1050" href="/kind-words"> kind words &nbsp; &rarr;
 </a><a class="flex items-center font-semibold text-kotei-600 transition-all hover:text-kotei-1050" href="/system/style-guide"> resume &nbsp; &rarr;
-</a> </div> </div> </div> </div>  <section class="bg-neutral-100"> <div class="mx-auto max-w-7xl px-6 lg:flex lg:px-8 py-20"> <div class="lg:ml-96 lg:flex lg:w-full lg:justify-end lg:pl-32"> <div class="mx-auto max-w-lg lg:mx-0 lg:w-0 lg:max-w-xl lg:flex-auto"> <h1 class="font-display text-5xl font-medium text-kotei-800"> Metabolic Insights </h1> <p class="mt-4 text-sm text-neutral-500"> Saliva based point-of-care testing technology </p> <!-- <div class="grid grid-cols-2 gap-2">
-            <div>
-              <p class="text-neutral-500 mt-8 uppercase text-sm">Website</p>
-              <p
-                class="italic font-display font-medium text-kotei-800 hover:text-kotei-1050"
-              >
-                <a href={frontmatter.website}>{frontmatter.website}</a>
-              </p>
-            </div>
-            <div>
-              <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p>
-              <p
-                class="font-display font-medium text-kotei-800"
-              >
-                {frontmatter.status}
-              </p>
-            </div>
-          </div> --> <div class="flex justify-between"> <div class="flex-item"> <p class="text-neutral-500 mt-8 uppercase text-sm">Website</p> <p class="italic font-display font-medium text-kotei-800 hover:text-kotei-1050"> <a href="https://www.metabolicinsights.com/">https://www.metabolicinsights.com/</a> </p> </div> <div class="flex-item"> <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p> <p class="font-display font-medium text-kotei-800 flex items-center"> In Development<span class="status in-development"></span> </p> </div> </div> <img class="mt-8" src="/mii.JPG" alt="Mii"> <div class="prose-styles mt-12 t">  <h3 id="more-to-come">More to come</h3>
-<p>While I’m unable to go into specifics of the app’s internals for now, I wanted to note another interesting aspect of the project: the
-experimental set up.</p>
-<h3 id="context">Context</h3>
-<p>Metabolic Insights (Mii) was founded with the general goal of empowering clinicians and customers with information about their body,
-through non-invasive &amp; repeatable techniques. Of particular interest to me is assessing the body’s
-metabolism, with a focus on identifying intervals and triggers of fat storage versus fat oxidation. Ultimately, the aim is to model the body’s
-response to specific foods and generate tailored meal plans aligned with individual health goals.</p>
-<p>Since the inception of Mii, I have been involved in the development of the technology,
-which initially focused on creating an electrochemical device capable of detecting multiple analytes in saliva
-without the need for reagents or consumables typical of a standard lateral flow assay. The project has since
-evolved to utilize a custom lateral flow assay to detect salivary insulin, a known regulator of metabolism.
-To support this, I developed a smartphone app that functions as the lateral flow assay reader.</p>
-<h3 id="experimental-setup">Experimental setup</h3>
-<p>I find scientific and experimental programming in Swift can be cumbersome, particularly for tasks like
-plotting/visualization. Python already has great solutions to most data problems, so I created a project
-structure that leverages Python for analytics, enabling rapid algorithm testing cycles and comprehensive result tracking with MLFlow.</p>
-<p>It’s a simple (ie probably common) solution: the core calculation logic is encapsulated within a dedicated, separate framework,
-allowing it to be wrapped in a Swift executable, which I then import into my Python analysis environment,
-as well embed directly in the app itself. Obviously, there is some automation that goes on in the background in regards to the build
-and the import of data but that wasn’t particularly novel to me.</p>
-<h3 id="findings">Findings</h3>
-<p>It’s an obvious setup in retrospect but I had not utilized this project structure before, despite working on similar products.
-The setup enables me to conduct testing, analysis, and plotting in Python while maintaining consistency with the app’s actual logic.
-It ensures that the same code is deployed both in the application and during analysis. Much better than Swift playgrounds I find.</p>  </div> </div> </div> </div> </section>  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.CnV4bF_R.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> </body> </html>
+</a> </div> </div> </div> </div>  <section class="bg-neutral-100"> <div class="mx-auto max-w-7xl px-6 py-20 lg:flex lg:px-8"> <div class="lg:ml-96 lg:flex lg:w-full lg:justify-end lg:pl-32"> <div class="mx-auto max-w-lg lg:mx-0 lg:w-0 lg:max-w-xl lg:flex-auto"> <p class="text-sm uppercase tracking-[0.2em] text-kotei-600">
+Kind words
+</p> <h1 class="mt-4 font-display text-5xl font-medium text-kotei-800">
+What it is like to build with me
+</h1> <p class="mt-4 max-w-2xl text-sm text-neutral-500">
+A few notes from people I have worked with closely across health
+            tech, product development, and engineering.
+</p> <div class="mt-12 space-y-8"> <article class="rounded-3xl border border-neutral-200 bg-neutral-50 p-8 shadow-sm"> <p class="font-display text-2xl leading-relaxed text-kotei-800">
+"Emerson is highly collaborative, detail-oriented, and is always looking to enhance the user experience. He&#39;s an exceptional problem-solver and continually worked to optimize Lightheart&#39;s functionality and aesthetic. Emerson has a unique balance of technical expertise with the ability to communicate in a non-technical way. This allowed Emerson to translate our validated physiological data into code which significantly increased Lightheart&#39;s accuracy."
+</p> <div class="mt-6 border-t border-neutral-200 pt-5"> <p class="text-lg font-semibold text-kotei-800"> Sean Locke, PhD </p> <p class="text-sm text-neutral-500"> Associate Professor  ·  Brock University </p> </div> </article><article class="rounded-3xl border border-neutral-200 bg-neutral-50 p-8 shadow-sm"> <p class="font-display text-2xl leading-relaxed text-kotei-800">
+"We had the pleasure working with Emerson on developing a medical device for incontinence management. Emerson brought both a strong technical and business lens to the development process. As a small start up, his expertise was super valuable with his out the box thinking and resourcefulness accelerating our technical progress. He was also a highly trusted source in helping us hire and lead technical staff. Would love the opportunity to work with Emerson again. Highly recommended."
+</p> <div class="mt-6 border-t border-neutral-200 pt-5"> <p class="text-lg font-semibold text-kotei-800"> Martina Viduka </p> <p class="text-sm text-neutral-500"> CEO  ·  Advosense </p> </div> </article> </div> <section class="mt-16 rounded-3xl border border-dashed border-kotei-300 bg-kotei-50/40 p-8"> <p class="text-sm uppercase tracking-[0.2em] text-kotei-600">
+Gobsmacked on the internet
+</p> <h2 class="mt-3 font-display text-3xl font-medium text-kotei-800">
+Public praise and product love
+</h2> <p class="mt-4 text-sm leading-7 text-neutral-500">
+This section is ready for the positive Gobsmacked mentions you
+              want to feature from around the web. Send those over and I will
+              turn them into a polished companion section on this page.
+</p> </section> </div> </div> </div> </section>  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.CnV4bF_R.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> </body> </html>
