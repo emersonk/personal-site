@@ -1,17 +1,32 @@
 ---
 const { url, name, thumbnail, description, slug } = Astro.props;
-const showPigeonBadge =
-  typeof slug === "string" && slug.toLowerCase().includes("pigeon");
+const slugValue = typeof slug === "string" ? slug.toLowerCase() : "";
+const showPigeonBadge = slugValue.includes("pigeon");
 const badgeText = "#74 on the iMessage App Store";
+const stageClasses = slugValue.includes("gobsmacked")
+  ? "bg-gradient-to-br from-[#fff7f8] via-[#f7dce4] to-[#efc7d3]"
+  : slugValue.includes("pigeon")
+    ? "bg-gradient-to-br from-[#fffdf3] via-[#f8f0dd] to-[#f3e6c5]"
+    : slugValue.includes("lightheart")
+      ? "bg-gradient-to-br from-[#ffffff] via-[#fbfbfb] to-[#f0f0f0]"
+      : "bg-gradient-to-br from-[#fffaf7] via-[#fff3ef] to-[#ffe0d2]";
+const imageClasses = slugValue.includes("gobsmacked")
+  ? "p-2 md:p-3"
+  : slugValue.includes("lightheart")
+    ? "p-8 md:p-10"
+    : "p-6 md:p-8";
 ---
 
 <div>
-  <a href={url} title={name} class="block">
-  <p class="text-kotei-800 font-semibold text-base mb-2">
-    {name}
-    <span class="text-sm font-normal text-neutral-500">- {description}</span>
-  </p>
-    <div class="relative inline-block">
+  <a href={url} title={name} class="group block">
+    <p class="mb-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-kotei-800">
+      <span class="text-base font-semibold">{name}</span>
+      <span class="text-sm font-normal text-neutral-500">- {description}</span>
+    </p>
+    <div
+      class={`relative flex h-72 w-full items-center justify-center overflow-hidden rounded-[2rem] border border-kotei-800/10 shadow-[0_24px_60px_-34px_rgba(45,75,101,0.4)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_28px_70px_-32px_rgba(45,75,101,0.5)] ${stageClasses}`}
+    >
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.9),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.45),transparent_30%)]"></div>
       {showPigeonBadge && (
         <span
           class="starburst-badge"
@@ -26,7 +41,11 @@ const badgeText = "#74 on the iMessage App Store";
           </span>
         </span>
       )}
-      <img class="rounded-[1.5em] w-full" src={thumbnail} alt={name} />
+      <img
+        class={`relative z-10 h-full w-full object-contain object-center ${imageClasses}`}
+        src={thumbnail}
+        alt={name}
+      />
     </div>
   </a>
 </div>

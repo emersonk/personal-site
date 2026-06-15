@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-const allProjects = await getCollection("projects");
+const allProjects = (await getCollection("projects")).sort((a, b) =>
+  a.slug.localeCompare(b.slug),
+);
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
 ---
@@ -15,17 +17,15 @@ import ProjectPreviews from "../../components/project/ProjectPreviewCard.astro";
           </h1>
           <div class="grid grid-cols-1 lg:grid-cols-1 mt-12 gap-20">
             {
-              allProjects
-                .slice()
-                .map((project) => (
-                  <ProjectPreviews
-                    url={"/project/" + project.slug}
-                    slug={project.slug}
-                    description={project.data.technicalDescription}
-                    name={project.data.client}
-                    thumbnail={project.data.thumbnail.url}
-                  />
-                ))
+              allProjects.map((project) => (
+                <ProjectPreviews
+                  url={"/project/" + project.slug}
+                  slug={project.slug}
+                  description={project.data.technicalDescription}
+                  name={project.data.client}
+                  thumbnail={project.data.thumbnail.url}
+                />
+              ))
             }
           </div>
         </div>

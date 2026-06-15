@@ -1,0 +1,61 @@
+---
+client: Gobsmacked
+description: A recipe platform for formatting, planning, and grocery automation.
+technicalDescription: Astro, SwiftUI, Appwrite, and Python across a four-product system
+website: https://gobsmacked.io
+status: In Development
+statusLight: in-development
+thumbnail:
+  url: "/gobsmacked-card-hero.png"
+  alt: "Gobsmacked recipe card preview"
+---
+
+### Context
+
+Gobsmacked began with a simple product question: why are so many online recipes still optimized for storytelling, ads, and search ranking instead of the actual act of cooking? I wanted to build a system that could turn long, cluttered recipe pages into something much more usable at the stove: a compact, structured card that is quick to scan and easy to follow.
+
+As the product matured, it became clear that recipe formatting was only one part of the workflow. If a user has already found, saved, and understood a recipe, the next questions are usually what to make this week and how to actually get the ingredients. That pushed Gobsmacked beyond a single app and into a connected product system.
+
+<div class="grid grid-cols-2 gap-2">
+  <img
+    src="/gobsmacked-card-hero.png"
+    alt="A Gobsmacked recipe card preview"
+  />
+  <img
+    src="/gobsmacked-card-detail.png"
+    alt="A second Gobsmacked recipe card preview"
+  />
+</div>
+
+### Product architecture
+
+Gobsmacked is now split into four coordinated products that share a common data model:
+
+- `gobsmacked-web` handles recipe ingestion, formatting, discovery, account flows, and persistence.
+- `gobsmacked-meal-planner` is an iOS app for planning meals, swiping through recipe options, reviewing plans, and building grocery lists.
+- `gobsmacked-agent` receives grocery lists and performs browser-assisted grocery ordering.
+- `gobsmacked-tools` owns schema management, contract generation, and the local agent console I use for debugging and operations.
+
+That breakdown has been one of the more interesting parts of the work. Each product has very different UX and runtime constraints, but they still need to behave like one coherent system.
+
+### Shared contracts and source of truth
+
+One of the main technical problems I focused on was keeping all of those surfaces aligned. Gobsmacked uses Appwrite as the durable source of truth, and I put shared contract definitions in one central schema layer rather than letting each product drift into its own version of the data model.
+
+From that shared schema, I generate product-local types for the web app, the Python agent, the local tooling, and the Swift iOS app. That lets me keep concepts like recipe variants, grocery items, meal-plan state, delivery preferences, and agent run status synchronized across multiple languages without relying on hand-maintained DTOs.
+
+This has been especially valuable because the system is not just CRUD-heavy. It includes generated types for user-facing app state, API payloads, agent runs, and parser output, so schema changes have a fairly wide blast radius unless they are handled carefully.
+
+### Meal planning and grocery automation
+
+The iOS side of Gobsmacked takes the saved recipe data and turns it into a planning workflow. I built a meal-planning flow that lets users configure a plan, swipe through candidate recipes for each slot, review their selections, and build a grocery list from the resulting plan.
+
+From there, the grocery list can be handed off to the agent service. The agent reads user-scoped preferences and history, receives the list through an API payload, and then uses browser automation to move through the grocery-ordering flow. I also added a lightweight chat loop so the system can surface ambiguity back to the user instead of pretending every decision is deterministic.
+
+What I like about this part of the project is that it turns Gobsmacked from a recipe reader into an execution tool. The product is no longer just helping someone understand what to cook; it is helping them close the loop from recipe discovery to ingredients in cart.
+
+### Why this project stands out
+
+Gobsmacked has been one of the clearest examples in my work of product design and systems design pulling equally hard. There is a consumer-facing UX problem at the center of it, but the technical challenge is really about keeping multiple apps, services, and languages moving together without losing clarity.
+
+It is also the kind of project I enjoy most: a mix of interface work, state modeling, cross-platform architecture, and applied automation, all in service of making a messy real-world task feel simpler.
