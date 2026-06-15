@@ -1,19 +1,22 @@
 ---
 const { url, name, thumbnail, description, slug } = Astro.props;
 const slugValue = typeof slug === "string" ? slug.toLowerCase() : "";
+const isGobsmacked = slugValue.includes("gobsmacked");
 const showPigeonBadge = slugValue.includes("pigeon");
+const isLightHeart = slugValue.includes("lightheart");
+const isMii = slugValue.includes("miireader");
 const badgeText = "#74 on the iMessage App Store";
-const stageClasses = slugValue.includes("gobsmacked")
-  ? "bg-gradient-to-br from-[#fff7f8] via-[#f7dce4] to-[#efc7d3]"
-  : slugValue.includes("pigeon")
-    ? "bg-gradient-to-br from-[#fffdf3] via-[#f8f0dd] to-[#f3e6c5]"
-    : slugValue.includes("lightheart")
-      ? "bg-gradient-to-br from-[#ffffff] via-[#fbfbfb] to-[#f0f0f0]"
-      : "bg-gradient-to-br from-[#fffaf7] via-[#fff3ef] to-[#ffe0d2]";
-const imageClasses = slugValue.includes("gobsmacked")
-  ? "p-2 md:p-3"
-  : slugValue.includes("lightheart")
-    ? "p-8 md:p-10"
+const stageClasses = isGobsmacked
+  ? "border-black/15 bg-[#c8befd]"
+  : showPigeonBadge
+    ? "border-[#eadfbb] bg-[#fffdf1]"
+    : isLightHeart
+      ? "border-kotei-800/10 bg-gradient-to-br from-[#ffffff] via-[#fbfbfb] to-[#f0f0f0]"
+      : "border-[#efd8d0] bg-gradient-to-br from-[#fffdfb] via-[#fff7f3] to-[#fcebe4]";
+const imageClasses = isLightHeart
+  ? "p-8 md:p-10"
+  : isMii
+    ? "p-10 md:p-12"
     : "p-6 md:p-8";
 ---
 
@@ -26,26 +29,77 @@ const imageClasses = slugValue.includes("gobsmacked")
     <div
       class={`relative flex h-72 w-full items-center justify-center overflow-hidden rounded-[2rem] border border-kotei-800/10 shadow-[0_24px_60px_-34px_rgba(45,75,101,0.4)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_28px_70px_-32px_rgba(45,75,101,0.5)] ${stageClasses}`}
     >
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.9),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.45),transparent_30%)]"></div>
-      {showPigeonBadge && (
-        <span
-          class="starburst-badge"
-          aria-label={badgeText}
-          title={badgeText}
-        >
-          <span class="starburst-rotating"></span>
-          <span class="starburst-label" aria-hidden="true">
-            <span class="starburst-line">#74 on</span>
-            <span class="starburst-line">iMessage</span>
-            <span class="starburst-line">App Store</span>
-          </span>
-        </span>
-      )}
-      <img
-        class={`relative z-10 h-full w-full object-contain object-center ${imageClasses}`}
-        src={thumbnail}
-        alt={name}
-      />
+      {
+        isGobsmacked ? (
+          <>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.36),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.2),transparent_34%)]"></div>
+            <img
+              class="absolute -left-8 top-5 z-0 w-24 rotate-[-12deg] opacity-95 md:w-28"
+              src="/gobsmacked-blob2.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              class="absolute left-8 bottom-3 z-0 w-20 rotate-[10deg] opacity-95 md:w-24"
+              src="/gobsmacked-blob4.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              class="absolute right-6 top-4 z-0 w-24 rotate-[8deg] opacity-95 md:w-28"
+              src="/gobsmacked-blob1.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              class="absolute -right-6 bottom-5 z-0 w-24 rotate-[18deg] opacity-95 md:w-28"
+              src="/gobsmacked-blob2.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="relative z-10 flex h-full w-full flex-col items-center justify-center px-8 text-center">
+              <span class="mb-4 inline-flex items-center rounded-full border-2 border-black/80 bg-white/70 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-black backdrop-blur-sm">
+                Scroll-Free Recipes
+              </span>
+              <span
+                class="block text-[clamp(2.4rem,7vw,4.75rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.06em] text-black"
+                style="font-family: 'Bricolage Grotesque', sans-serif;"
+              >
+                Gobsmacked<span class="text-[#de5e75]">.</span><span class="text-[#ec7c04]">io</span>
+              </span>
+              <span
+                class="mt-3 max-w-md text-sm font-medium tracking-wide text-black/72 md:text-base"
+                style="font-family: 'Bricolage Grotesque', sans-serif;"
+              >
+                Structured recipe cards, meal planning, and grocery automation.
+              </span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.9),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.45),transparent_30%)]"></div>
+            {showPigeonBadge && (
+              <span
+                class="starburst-badge"
+                aria-label={badgeText}
+                title={badgeText}
+              >
+                <span class="starburst-rotating"></span>
+                <span class="starburst-label" aria-hidden="true">
+                  <span class="starburst-line">#74 on</span>
+                  <span class="starburst-line">iMessage</span>
+                  <span class="starburst-line">App Store</span>
+                </span>
+              </span>
+            )}
+            <img
+              class={`relative z-10 h-full w-full object-contain object-center ${imageClasses}`}
+              src={isMii ? "/mii-logo.png" : thumbnail}
+              alt={name}
+            />
+          </>
+        )
+      }
     </div>
   </a>
 </div>
