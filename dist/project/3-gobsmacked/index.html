@@ -30,4 +30,49 @@ and on
 <a href="https://www.linkedin.com/in/emerson-kirby-94124b222/" class="text-kotei-600 transition-all hover:text-kotei-1050">LinkedIn</a> &
 <a href="https://github.com/emersonk" class="text-kotei-600 transition-all hover:text-kotei-1050">GitHub.</a> </p> <script type="module">const n=document.querySelectorAll("button.copy");n.forEach(t=>{const e=t;e.addEventListener("click",()=>{navigator.clipboard.writeText("em@emersonkirby.com").then(()=>{e.innerText="copied!",setTimeout(()=>{e.innerText="email"},2e3)}).catch(o=>{console.error("Failed to copy: ",o)})})});</script> <a class="flex items-center font-semibold text-kotei-600 transition-all hover:text-kotei-1050" href="/project/home"> works &nbsp; &rarr;
 </a><a class="flex items-center font-semibold text-kotei-600 transition-all hover:text-kotei-1050" href="/kind-words"> kind words &nbsp; &rarr;
-</a> </div> </div> </div> </div>  <div class="lg:w-[79%] 2xl:w-[72%] ml-auto md:flex relative flex w-full lg:pointer-events-auto lg:overflow-y-auto lg:overflow-x-hidden"> <span class="absolute text-white right-20 top-20 text-8xl font-display">404</span> <div class="lg:ml-96 lg:flex flex-col lg:w-full lg:justify-end"> <img class="w-full lg:h-screen" src="/wallpaper1.png" alt="placeholder image"> </div> </div>  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.CnV4bF_R.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> </body> </html>
+</a> </div> </div> </div> </div>  <section class="bg-neutral-100"> <div class="mx-auto max-w-7xl px-6 lg:flex lg:px-8 py-20"> <div class="lg:ml-96 lg:flex lg:w-full lg:justify-end lg:pl-32"> <div class="mx-auto max-w-lg lg:mx-0 lg:w-0 lg:max-w-xl lg:flex-auto"> <h1 class="font-display text-5xl font-medium text-kotei-800"> Gobsmacked </h1> <p class="mt-4 text-sm text-neutral-500"> A recipe web app for turning recipes into fast, cook-friendly cards. </p> <!-- <div class="grid grid-cols-2 gap-2">
+            <div>
+              <p class="text-neutral-500 mt-8 uppercase text-sm">Website</p>
+              <p
+                class="italic font-display font-medium text-kotei-800 hover:text-kotei-1050"
+              >
+                <a href={frontmatter.website}>{frontmatter.website}</a>
+              </p>
+            </div>
+            <div>
+              <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p>
+              <p
+                class="font-display font-medium text-kotei-800"
+              >
+                {frontmatter.status}
+              </p>
+            </div>
+          </div> --> <div class="flex justify-between"> <div class="flex-item"> <p class="text-neutral-500 mt-8 uppercase text-sm">Website</p> <p class="italic font-display font-medium text-kotei-800 hover:text-kotei-1050"> <a href="https://gobsmacked.io">https://gobsmacked.io</a> </p> </div> <div class="flex-item"> <p class="text-neutral-500 mt-8 uppercase text-sm">Status</p> <p class="font-display font-medium text-kotei-800 flex items-center"> In Development<span class="status in-development"></span> </p> </div> </div> <img class="mt-8" src="/gobsmacked-card-hero-2.png" alt="Gobsmacked recipe card preview"> <div class="prose-styles mt-12 t">  <h3 id="data-mise-en-place">Data mise en place</h3>
+<p>I love to cook, particularly Cajun and Creole food (Paul Prudhomme is my favourite chef of all time, look him up if you are
+not familiar!). My typical workflow for cooking is I find a recipe I want to try, read through it once, and then leave the
+page open while I cook so I can quickly check ingredient quantities, timings, and steps. I am not actually following the
+steps per say, but I do like being able to reference the recipe. Gobsmacked started as an attempt to make recipes visually
+better suited to that kind of quick referencing. It seems to me it is 50/50 whether people like to see recipes in this visual format,
+or they hate it, and I am okay with that.</p>
+<p>Currently, it automatically converts recipes into my take on a tree/graph/tabular style visualization. Eventually, I would like it to become a personal kitchen and recipe management system, but for now I am focused on improving the recipe display itself.</p>
+<img src="/gobsmacked-card-hero.png" alt="A Gobsmacked recipe card preview"/>
+<p>What I love about gobsmacked is that it spans both product and systems work. The site has to
+feel simple and calm for the user, but behind that there is a fair amount of structure needed to ingest messy
+recipe pages, normalize them, and preserve enough meaning to render them cleanly.</p>
+<h3 id="recipe-ingestion-and-rendering">Recipe ingestion and rendering</h3>
+<p>One of the main technical problems is just how unstructured recipe pages really are. Piping them into
+a UI that feels deliberate and consistent across all recipes requires lots more wrangling than one might expect, as well as some fun and inventive data structures.
+Recipes come in with inconsistent formatting, uneven step structure, and wildly different
+ingredient conventions, so the ingestion flow has to do quite a bit of cleanup before the display layer can make good decisions.</p>
+<p>The current version uses LLM-assisted parsing to turn those pages into structured JSON that the app can
+render as compact recipe cards. A lot of the work has been in shaping that pipeline so the output is not just technically valid,
+but actually useful to someone glancing at a screen mid-cook.</p>
+<p>On the frontend, I built the card presentation around CSS grid so ingredient groupings, quantities,
+timings, and steps can be scanned quickly instead of read like a blog post. That visual system is the heart of the product for me.
+It is where parsing quality, layout decisions, and cooking ergonomics all meet.</p>
+<h3 id="future-work">Future work</h3>
+<p>I built the account and persistence layer so recipes can move from one-off experiments into a growing personal collection
+instead of disappearing as soon as the tab closes. It is here that the aforementioned personal kitchen and recipe management system will be born from.</p>
+<p>Appwrite acts as the durable source of truth for the web app, which keeps user data, saved recipes, and parser output in one place.
+That has been especially helpful while iterating on the product, because changes to recipe structure and user flows tend to ripple
+through both the ingestion pipeline and the interface at the same time.</p>  </div> </div> </div> </div> </section>  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.CnV4bF_R.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> </body> </html>
